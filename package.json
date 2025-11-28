@@ -4,7 +4,7 @@
   "description": "AWS AppFlow to S3 to Step Function to API",
   "main": "dist/processor.js",
   "scripts": {
-    "build": "tsc",
+    "build": "esbuild src/processor.ts --bundle --platform=node --target=node20 --outfile=dist/processor.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,7 +17,8 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.0",
     "@types/node": "^22.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "esbuild": "^0.19.0"
   },
   "engines": {
     "node": ">=18.0.0"

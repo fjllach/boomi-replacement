@@ -2,8 +2,8 @@ const {S3Client, PutObjectCommand, ListBucketsCommand} = require("@aws-sdk/clien
 const axios = require("axios");
 
 // Configuration
-const SALESFORCE_URL = "http://localhost:3001/services/data/v50.0/query?q=SELECT+Id,Name+FROM+Account";
-const S3_ENDPOINT = "http://localhost:4566";
+const SALESFORCE_URL = process.env.SALESFORCE_URL || "http://localhost:3001/services/data/v50.0/query?q=SELECT+Id,Name+FROM+Account";
+const S3_ENDPOINT = process.env.S3_ENDPOINT || "http://localhost:4566";
 const REGION = "us-east-1";
 
 const s3 = new S3Client({
