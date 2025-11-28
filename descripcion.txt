@@ -1,0 +1,6 @@
+Boomi Replacement:
+
+Aplicacion de AWS que se conecta y extrae datos de Salesforce con Appflow y genera un archivo que es guardado en un bucket S3.
+Esto dispara la ejecucion de una step funtion que realiza un post del contenido del archivo recien guardado en S3 a una api externa
+Crea el proyecto. Diseña y Define la infraestructura mediante terraform. Diseña la step-funtion.
+Usa Typescript con nodeJS v22 para el codigo que necesite la aplicacion.

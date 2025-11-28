@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.secret.tfvars
+.terraform.lock.hcl
+
+# IDE
+.vscode/
+.idea/

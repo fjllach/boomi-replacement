@@ -1,0 +1,25 @@
+{
+  "name": "boomi-replacement",
+  "version": "1.0.0",
+  "description": "AWS AppFlow to S3 to Step Function to API",
+  "main": "dist/processor.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.0.0",
+    "axios": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

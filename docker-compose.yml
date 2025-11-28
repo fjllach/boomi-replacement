@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3,lambda,stepfunctions,iam,events,cloudwatch,sts
+      - DEBUG=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - AWS_DEFAULT_REGION=us-east-1
+      - EDGE_PORT=4566
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  mock-salesforce:
+    build: ./mocks/salesforce
+    ports:
+      - "3001:3000"
+    networks:
+      - default
+
+  mock-api:
+    build: ./mocks/api
+    ports:
+      - "3002:3000"
+    networks:
+      - default
+
+  # Helper to run terraform inside the network
+  terraform-runner:
+    image: hashicorp/terraform:light
+    working_dir: /app/terraform
+    volumes:
+      - ./:/app
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-east-1
+    depends_on:
+      - localstack
+    entrypoint: ["sh", "-c", "echo 'Waiting for LocalStack...' && sleep 10 && terraform init && terraform apply -auto-approve -var-file=local.tfvars"]
+
+networks:
+  default:
+    name: boomi-net
